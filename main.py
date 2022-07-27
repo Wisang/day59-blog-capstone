@@ -7,8 +7,6 @@ blog_resp = requests.get(blog_url)
 print(blog_resp)
 all_posts = blog_resp.json()
 
-print(all_posts)
-
 app = Flask(__name__)
 
 
@@ -34,8 +32,8 @@ def contact():
 
 @app.route("/post/<int:index>")
 def show_post(index):
-    # post = all_posts[index-1]
-    return render_template("post.html") #, post=post, image=post['image'])
+    post = all_posts[index-1]
+    return render_template("post.html", post=post, image=post['image'])
 
 
 if __name__ == '__main__':
